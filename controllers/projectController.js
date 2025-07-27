@@ -12,9 +12,12 @@ export const addProject = async (req, res) => {
 
 export const getProjects = async (req, res) => {
   try {
+    console.log('GET /api/projects - Fetching all projects');
     const projects = await Project.find();
+    console.log(`Found ${projects.length} projects`);
     res.json(projects);
   } catch (err) {
+    console.error('Error fetching projects:', err);
     res.status(500).json({ message: err.message });
   }
 };
