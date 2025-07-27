@@ -6,12 +6,15 @@ const router = express.Router();
 
 
 // GET /api/projects
-router.get('/', getProjects);
+router.get('/', (req, res, next) => {
+  console.log('Route matched: GET /api/projects');
+  next();
+}, getProjects);
 // POST /api/projects
-router.post('/',authMiddleware, addProject);
+router.post('/', addProject);
 // PUT /api/projects/:id
-router.put('/:id',authMiddleware, updateProject);
+router.put('/:id', updateProject);
 // DELETE /api/projects/:id
-router.delete('/:id',authMiddleware, deleteProject);
+router.delete('/:id', deleteProject);
 
 export default router; 
